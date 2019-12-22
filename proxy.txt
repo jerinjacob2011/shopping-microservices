@@ -1,0 +1,2 @@
+https_proxy
+http://squid:3128

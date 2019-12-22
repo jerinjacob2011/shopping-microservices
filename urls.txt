@@ -1,0 +1,50 @@
+customer-service-----------------------------------
+GET  localhost:1000/service1/customers
+GET  localhost:1000/service1/customer/{customerId}
+GET  localhost:1000/service1/customer/id/{customerId}/email/{email}/firstName/{firstName}/lastName/{lastName}
+				zuul
+GET  localhost:9090/customer-service-532488/service1/customers
+GET  localhost:9090/customer-service-532488/service1/customer/{customerId}
+GET  localhost:9090/customer-service-532488/service1/customer/id/{customerId}/email/{email}/firstName/{firstName}/lastName/{lastName}
+			-localhost:9090/customer-service-532488/service1/customer/id/1001/email/abc@xyz.com/firstName/Johnson/lastName/Thomas
+			-localhost:9090/customer-service-532488/service1/customer/id/1002/email/def@uvw.com/firstName/George/lastName/Thomas
+			-localhost:9090/customer-service-532488/service1/customer/id/1003/email/ghi@rst.com/firstName/Jacob/lastName/Thomas
+			-localhost:9090/customer-service-532488/service1/customer/id/1004/email/jkl@opq.com/firstName/Mary/lastName/Thomas
+
+item-service---------------------------------------
+
+GET  localhost:2000/service2/items
+GET  localhost:2000/service2/itemName/{itemName}
+				zuul
+GET  localhost:9090/item-service-532488/service2/items
+GET  localhost:9090/item-service-532488/service2/itemName/{itemName}
+														- Talc,Spray,Hair Oil,Lip Balm
+
+Order sales----------------------------------------
+GET  localhost:3000/service3/customers
+GET  localhost:3000/service3/lineItems
+GET  localhost:3000/service3/orders
+POST localhost:3000/service3/orders
+				zuul
+GET  localhost:9090/sales-order-service-532488/service3/customers
+GET  localhost:9090/sales-order-service-532488/service3/lineItems
+GET  localhost:9090/sales-order-service-532488/service3/orders
+POST localhost:9090/sales-order-service-532488/service3/orders
+{
+	"orderDesc":"order is beautiful",
+	"orderDate":"12/12/2019",
+	"custId":"1002",
+	"itemNames":{
+		"Talc":1,
+		"Spray":2,
+		"Hair Oil":1
+	}
+}
+
+git commands-----------------------------------------------------
+
+git config -- global user.email "jerinjacob2011@gmail.com" 
+git config -- global user.name "jerinjacob2011" 
+
+git add -A
+gir commit -m "added something"
